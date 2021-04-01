@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Request</title>
+
+            <!-- Bootstrap CSS -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+            <title>Request</title>
+          </head>
+          <body>
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/"><img class="navbar-brand" src="https://i.ibb.co/JjyCc6Z/logo.png"></a>
+          </div>
+        </nav>
+        <div class="container my-3">
+           <h2 align="center"><u><b>Request For Cab Sharing</b></u></h2>
+            <form name="myForm"  action="/email/{{post.sno}}" method="POST">
+                <div class="col-md-6">
+                    <b><label for="Name"  class="form-label">Name</label></b>
+                    <input type="text" class="form-control" name="Name" id="Name" placeholder="Enter your Name" required>
+                </div>
+                <div class="col-md-6">
+                    <b><label for="Phone_no" class="form-label">Phone No</label></b>
+                    <input type="text" class="form-control" name="Phone_no" id="Phone_no" placeholder="+91 xxxxxxxxxx" required>
+                </div>
+                <div class="col-md-6 my-2">
+                    <b><label for="T_area" class="form-label">Any thing you would like to add ?</label></b>
+                    <textarea class="form-control" name="T_area" id="T_area" rows="3" ></textarea>
+                </div>
+
+                <div class="col-12 my-5">
+                    <button type="submit" class="btn btn-outline-dark"><b>Submit</b></button>
+                </div>
+        </form>
+     </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+  </body>
+</html>

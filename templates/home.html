@@ -1,0 +1,111 @@
+<!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ManipalPool</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+          <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+          <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+          <link rel="stylesheet" href="/resources/demos/style.css">
+          <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+          <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+      </head>
+      <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <img class="navbar-brand" src="https://i.ibb.co/JjyCc6Z/logo.png">
+      </div>
+    </nav>
+    <div class="container my-5">
+    <form name="myForm" class="row g-3" action="/" method="POST" onsubmit="return validateForm()">
+    <div class="col-md-6">
+        <b><label for="Name" class="form-label">Name</label></b>
+      <input type="text" class="form-control" name="Name" id="Name" placeholder="Enter your Name" required>
+    </div>
+    <div class="col-md-6">
+        <b><label for="Phone_no" class="form-label">Phone No</label></b>
+      <input type="text" class="form-control" name="Phone_no" id="Phone_no" placeholder="+91 xxxxxxxxxx" required>
+    </div>
+    <div class="col-md-6">
+        <b><label for="email" class="form-label">Email address</label></b>
+      <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+    </div>
+    <div class="col-md-2">
+        <b><label for="A_date" class="form-label">Date Of Journey</label></b>
+         <input type='text' class="form-control" name="A_date" id="A_date" placeholder="DD-MM-YYYY" required>
+    </div>
+    <div class="col-md-2">
+        <b><label for="A_time" class="form-label">Time Of Journey</label></b>
+      <input type="text" data-format="dd/MM/yyyy hh:mm:ss" class="form-control" name="A_time" id="A_time" placeholder="HH:MM AM/PM" required>
+    </div>
+    <div class="col-md-2">
+        <b><label for="seat_avail" class="form-label">No of Request Accepted</label></b>
+      <input type="text" class="form-control" name="seat_avail" id="seat_avail" placeholder="Enter The No of Request Accepted" required>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-outline-dark"><b>Submit</b></button>
+    </div>
+</form>
+    </div>
+    <div class="container my-5">
+      {% if allpost|length == 0 %}
+
+          <div class="alert alert-dark" role="alert">
+            No Posts found. Add your first Post now!
+          </div>
+      {% else %}
+      <table class="table table-light table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Sno</th>
+            <th scope="col">Post Created</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Airport Name</th>
+            <th scope="col">Date Of Journey</th>
+            <th scope="col">Time Of Journey</th>
+            <th scope="col">Seats Left</th>
+            <th scope="col">Send Request</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for post in allpost %}
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{post.date_created}}</td>
+            <td>{{post.Name}}</td>
+            <td>{{post.email}}</td>
+            <td>{{post.Airport_name}}</td>
+            <td>{{post.A_date}}</td>
+            <td>{{post.A_time}}</td>
+            <td>{{post.seat_avail}}</td>
+              <td><a href="/request/{{post.sno}}" class="btn btn-outline-dark" tabindex="-1" role="button" aria-disabled="true"><b>Request</b></a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+      </div>
+    <script>
+        $( function() {
+        $( "#A_date" ).datepicker({dateFormat:'dd-mm-yy'});
+        } );
+
+        $(document).ready(function(){
+        $("#A_time").timepicker({timeFormat: 'h:mm p',
+                interval: 5,
+                minTime: '12:00am',
+                maxTime: '11:00pm',
+                startTime: '12:00am',
+                dynamic: false,
+                dropdown: true,
+                scrollbar: true});
+                        });
+    </script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    </body>
+</html>
