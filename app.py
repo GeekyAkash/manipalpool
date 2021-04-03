@@ -7,8 +7,7 @@ from sendgrid.helpers.mail import Mail
 
 app = Flask(__name__)
 client = Client("ACda9f81c9558109c70ec80f8eb90257a8", "7dcfa5a3d18407d594ee012f1b3ee09a")
-DATABASE_URL = 'postgres://cinlddenjqyzgl:858fa32cc08b3cda030f8003c4b21b2aabdf064559762c094812691d7e43a83a@ec2-54-235-108-217.compute-1.amazonaws.com:5432/ddunjku6natu2k'
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_DATABASE_URI'] =
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
