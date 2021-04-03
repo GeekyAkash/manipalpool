@@ -8,13 +8,12 @@ from sendgrid.helpers.mail import Mail
 app = Flask(__name__)
 
 client = Client("ACda9f81c9558109c70ec80f8eb90257a8", "7dcfa5a3d18407d594ee012f1b3ee09a")
-app.config['SQLALCHEMY_DATABASE_URI'] = "mongodb+srv://m001-student:<xGCjIxturPNmrDai>@mflix.jct2e.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///manipalpool.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
 class Post(db.Model):
-    __tablename__ = 'manipalpool'
     sno = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.String(50), nullable=False)
     Phone_no = db.Column(db.Integer, unique=True, nullable=False)
