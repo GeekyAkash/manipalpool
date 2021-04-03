@@ -8,7 +8,7 @@ from sendgrid.helpers.mail import Mail
 app = Flask(__name__)
 client = Client("ACda9f81c9558109c70ec80f8eb90257a8", "7dcfa5a3d18407d594ee012f1b3ee09a")
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///manipalpool.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://hrflxfzrsuxadi:f5ba8c3acba6861891d25a24475618cffccb7c396ac51ab11cad13612640d517@ec2-54-145-102-149.compute-1.amazonaws.com:5432/d6045pk6mfsko9'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -100,4 +100,4 @@ def email(sno):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
