@@ -40,11 +40,15 @@
     </div>
     <div class="col-md-2">
         <b><label for="A_time" class="form-label">Time Of Journey</label></b>
-      <input type="text" data-format="dd/MM/yyyy hh:mm:ss" class="form-control" name="A_time" id="A_time" placeholder="HH:MM AM/PM" required>
+      <input type="text"  class="form-control" name="A_time" id="A_time" placeholder="HH:MM AM/PM" required>
     </div>
     <div class="col-md-2">
-        <b><label for="seat_avail" class="form-label">No of Request Accepted</label></b>
-      <input type="text" class="form-control" name="seat_avail" id="seat_avail" placeholder="Enter The No of Request Accepted" required>
+        <b><label for="seat_avail" class="form-label">Seats Available</label></b>
+          <select name="seat_avail" id="seat_avail" class="form-select" aria-label="Default select example" required>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
     </div>
     <div class="col-12">
         <button type="submit" class="btn btn-outline-dark"><b>Submit</b></button>
@@ -58,53 +62,26 @@
             No Posts found. Add your first Post now!
           </div>
       {% else %}
-      <table class="table table-light table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Sno</th>
-            <th scope="col">Post Created</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Airport Name</th>
-            <th scope="col">Date Of Journey</th>
-            <th scope="col">Time Of Journey</th>
-            <th scope="col">Seats Left</th>
-            <th scope="col">Send Request</th>
-          </tr>
-        </thead>
-        <tbody>
         {% for post in allpost %}
-          <tr>
-            <th scope="row">{{loop.index}}</th>
-            <td>{{post.date_created}}</td>
-            <td>{{post.Name}}</td>
-            <td>{{post.email}}</td>
-            <td>{{post.Airport_name}}</td>
-            <td>{{post.A_date}}</td>
-            <td>{{post.A_time}}</td>
-            <td>{{post.seat_avail}}</td>
-              <td><a href="/request/{{post.sno}}" class="btn btn-outline-dark" tabindex="-1" role="button" aria-disabled="true"><b>Request</b></a></td>
-          </tr>
+        <div class="card text-dark bg-light mb-3">
+          <div class="card-body">
+              <p class="card-text"><b>Name:</b> {{post.Name}}</p>
+              <p class="card-text"><b>Email:</b> {{post.email}}</p>
+              <p class="card-text"><b>Airport Name:</b> {{post.Airport_name}}</p>
+              <p class="card-text"><b>Date:</b> {{post.A_date}}</p>
+              <p class="card-text"><b>Time:</b> {{post.A_time}}</p>
+              <p class="card-text"><b>Seat available:</b> {{post.seat_avail}}</p>
+            <p class="card-text"><small class="text-muted">Post created on {{post.date_created}}</small></p>
+            <a href="/request/{{post.sno}}" class="btn btn-outline-dark" tabindex="-1" role="button" aria-disabled="true"><b>Request</b></a>
+          </div>
+        </div>
         {% endfor %}
-        </tbody>
-      </table>
       {% endif %}
-      </div>
+    </div>
     <script>
         $( function() {
         $( "#A_date" ).datepicker({dateFormat:'dd-mm-yy'});
         } );
-
-        $(document).ready(function(){
-        $("#A_time").timepicker({timeFormat: 'h:mm p',
-                interval: 5,
-                minTime: '12:00am',
-                maxTime: '11:00pm',
-                startTime: '12:00am',
-                dynamic: false,
-                dropdown: true,
-                scrollbar: true});
-                        });
     </script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     </body>
