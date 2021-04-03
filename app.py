@@ -5,12 +5,11 @@ from twilio.rest import Client
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
-"""SENDGRID_API_KEY="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"""
 
 app = Flask(__name__)
 client = Client("ACda9f81c9558109c70ec80f8eb90257a8", "7dcfa5a3d18407d594ee012f1b3ee09a")
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///manipalpool.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://qcfxmlvpoorbnq:ef8b2881dd5561fd062ccec730acee834b74c9df159140359553d9c0bcc924c0@ec2-34-225-103-117.compute-1.amazonaws.com:5432/d56ntuj1g1552k"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
