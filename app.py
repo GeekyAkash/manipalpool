@@ -6,8 +6,9 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
 app = Flask(__name__)
+
 client = Client("ACda9f81c9558109c70ec80f8eb90257a8", "7dcfa5a3d18407d594ee012f1b3ee09a")
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://uhzlrnmchdysxw:5d0111e4d664409182196fc5cec11a8fad76ab2d64f89cb58b2ea6ada76292c7@ec2-54-235-108-217.compute-1.amazonaws.com:5432/d1nfpi545nnvgd'
+app.config['SQLALCHEMY_DATABASE_URI'] = "mongodb+srv://m001-student:<xGCjIxturPNmrDai>@mflix.jct2e.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
