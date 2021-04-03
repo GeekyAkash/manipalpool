@@ -5,17 +5,15 @@ from twilio.rest import Client
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
-
 app = Flask(__name__)
 client = Client("ACda9f81c9558109c70ec80f8eb90257a8", "7dcfa5a3d18407d594ee012f1b3ee09a")
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://qcfxmlvpoorbnq:ef8b2881dd5561fd062ccec730acee834b74c9df159140359553d9c0bcc924c0@ec2-34-225-103-117.compute-1.amazonaws.com:5432/d56ntuj1g1552k"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///manipalpool.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
 class Post(db.Model):
-    __tablename__='manipalpool'
     sno = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.String(50), nullable=False)
     Phone_no = db.Column(db.Integer, unique=True, nullable=False)
@@ -42,8 +40,8 @@ def home():
             A_time = request.form['A_time']
             seat_avail = request.form['seat_avail']
             post = Post(Name=Name, Phone_no=Phone_no, email=email, Airport_name=Airport_name, A_date=A_date,
-                            A_time=A_time,
-                            seat_avail=seat_avail)
+                        A_time=A_time,
+                        seat_avail=seat_avail)
 
             db.session.add(post)
             db.session.commit()
@@ -73,11 +71,12 @@ def email(sno):
             T_area = request.form.get("T_area")
             client.messages.create(
                 body="Sender Name:" + Name + ",Sender Phone no:" + str(Phone_no) + ",Reciever Name:" + str(
-                    e_name) + ",Reciever Phone no:" + str(e_phone) + ",Reciever Email ID:" + str(e_id) +".",from_="whatsapp:+14155238886", to="whatsapp:+917048984193")
+                    e_name) + ",Reciever Phone no:" + str(e_phone) + ",Reciever Email ID:" + str(e_id) + ".",
+                from_="whatsapp:+14155238886", to="whatsapp:+917048984193")
             message = Mail(from_email='akash.singh88023@gmail.com',
                            to_emails=e_id,
-                           subject='You got a Request for Cab Sharing from '+Name+".",
-                           html_content=render_template('mail.html',Name=Name, Phone_no=Phone_no, T_area=T_area))
+                           subject='You got a Request for Cab Sharing from ' + Name + ".",
+                           html_content=render_template('mail.html', Name=Name, Phone_no=Phone_no, T_area=T_area))
             try:
                 sg = SendGridAPIClient("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")
                 sg.send(message)
