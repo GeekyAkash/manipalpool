@@ -1,13 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from twilio.rest import Client
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
 app = Flask(__name__)
-
-client = Client("ACda9f81c9558109c70ec80f8eb90257a8", "7dcfa5a3d18407d594ee012f1b3ee09a")
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///manipalpool.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -15,6 +12,7 @@ db = SQLAlchemy(app)
 
 
 class Post(db.Model):
+    __tablename__='manipalpool'
     sno = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.String(50), nullable=False)
     Phone_no = db.Column(db.Integer, unique=True, nullable=False)
@@ -63,23 +61,17 @@ def requests(sno):
 def email(sno):
     try:
         post = Post.query.filter_by(sno=sno).first()
-        e_name = post.Name
         e_id = post.email
-        e_phone = post.Phone_no
         if request.method == 'POST':
             Name = request.form.get("Name")
             Phone_no = request.form.get("Phone_no")
             T_area = request.form.get("T_area")
-            client.messages.create(
-                body="Sender Name:" + Name + ",Sender Phone no:" + str(Phone_no) + ",Reciever Name:" + str(
-                    e_name) + ",Reciever Phone no:" + str(e_phone) + ",Reciever Email ID:" + str(e_id) + ".",
-                from_="whatsapp:+14155238886", to="whatsapp:+917048984193")
-            message = Mail(from_email='akash.singh88023@gmail.com',
+            message = Mail(from_email='manipalpool@gmail.com',
                            to_emails=e_id,
                            subject='You got a Request for Cab Sharing from ' + Name + ".",
                            html_content=render_template('mail.html', Name=Name, Phone_no=Phone_no, T_area=T_area))
             try:
-                sg = SendGridAPIClient("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")
+                sg = SendGridAPIClient("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")
                 sg.send(message)
             except:
                 return redirect('/')
