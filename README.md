@@ -9,3 +9,5 @@
 - People come to website any post for requirements. If anyone find it similar them he/she request for the same.
 - After the completion of request the Post automatically deleted.
 - We do not store any kind of data.
+
+Checkout Demo app: https://manipalpool.herokuapp.com/
