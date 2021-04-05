@@ -70,7 +70,7 @@ def email(sno):
                            subject='You got a Request for Cab Sharing from ' + Name + ".",
                            html_content=render_template('mail.html', Name=Name, Phone_no=Phone_no, T_area=T_area))
             try:
-                sg = SendGridAPIClient("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")
+                sg = SendGridAPIClient("YOUR_API_KEY")
                 sg.send(message)
             except:
                 return redirect('/')
